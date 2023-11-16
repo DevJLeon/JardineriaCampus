@@ -51,8 +51,6 @@ using (var scope = app.Services.CreateScope())
 	{
 		var context = services.GetRequiredService<ApiContext>();
 		await context.Database.MigrateAsync();
-		await ApiContextSeed.SeedRolesAsync(context,loggerFactory);
-		await ApiContextSeed.SeedAsync(context,loggerFactory);
 	}
 	catch (Exception ex)
 	{
@@ -75,5 +73,5 @@ app.MapControllers();
 
 app.Run();
 
-/*dotnet ef database update --project ./Persistencia/ --startup-project ./API/
- */
+//dotnet ef database update --project ./Persistence/ --startup-project ./API/
+//dotnet ef migrations add InitialCreate --project .\Persistence\ --startup-project ./API/ --output-dir ./Data/Migrations

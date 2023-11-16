@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using Domain.Entities;
 
 namespace Domain.Interfaces;
-public interface IGenericRepo <T> where T : BaseEntity
+public interface IGenericRepo <T> where T : class
 {
     Task<T> GetByIdAsync(int id);
     Task<IEnumerable<T>> GetAllAsync();

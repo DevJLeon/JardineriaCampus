@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Persistencia;
 
 namespace Application.Repository;
-public class GenericRepo <T> : IGenericRepo<T> where T : BaseEntity
+public class GenericRepo <T> : IGenericRepo<T> where T : class
 {
     private readonly ApiContext _context;
 
