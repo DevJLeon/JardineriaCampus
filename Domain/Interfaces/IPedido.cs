@@ -1,6 +1,6 @@
 using Domain.Entities;
 
 namespace Domain.Interfaces;
-public interface IRol : IGenericRepo<Rol>
+public interface IPedido : IGenericRepo<Pedido>
 {
 }
