@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace API.Entities;
+namespace Domain.Entities;
 
 public partial class Cliente
 {
