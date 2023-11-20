@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Domain.Entities;
 
@@ -25,6 +26,7 @@ public partial class Empleado
 
     public virtual ICollection<Cliente> Clientes { get; set; } = new List<Cliente>();
 
+    [JsonIgnore]
     public virtual Empleado? CodigoJefeNavigation { get; set; }
 
     public virtual Oficina CodigoOficinaNavigation { get; set; } = null!;
