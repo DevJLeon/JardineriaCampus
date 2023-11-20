@@ -34,7 +34,7 @@ public class UsuarioRepository : GenericRepo<Usuario>, IUsuario
             .ToListAsync();
     }
 
-    public override async Task<Usuario> GetByIdAsync(int id)
+    public async Task<Usuario> GetByIdAsync(int id)
     {
         return await _context.Usuarios
         .FirstOrDefaultAsync(p =>  p.Id == id);

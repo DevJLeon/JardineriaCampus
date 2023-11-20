@@ -444,7 +444,7 @@ namespace Persistence.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(255)
                         .HasColumnType("varchar")
-                        .HasColumnName("rolName");
+                        .HasColumnName("Nombre");
 
                     b.HasKey("Id");
 

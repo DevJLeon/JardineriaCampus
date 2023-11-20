@@ -18,7 +18,7 @@ public class RolRepository : GenericRepo<Rol>, IRol
             .ToListAsync();
     }
 
-    public override async Task<Rol> GetByIdAsync(int id)
+    public async Task<Rol> GetByIdAsync(int id)
     {
         return await _context.Roles
         .FirstOrDefaultAsync(p =>  p.Id == id);

@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
-[ApiVersion("1.0")]
-[ApiVersion("1.1")]
+/*[ApiVersion("1.0")]
+[ApiVersion("1.1")]*/
 public class UsuarioController : BaseApiController
 {
     private readonly IUserService _Usuarioservice;
@@ -23,8 +23,8 @@ public class UsuarioController : BaseApiController
         _Usuarioservice = Usuarioservice;
     }
     [HttpGet]
-    [Authorize(Roles = "Administrador")]
-    [MapToApiVersion("1.0")]
+    //[Authorize(Roles = "Administrador")]
+    //[MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<IEnumerable<UsuarioDto>>> Get()
@@ -33,7 +33,7 @@ public class UsuarioController : BaseApiController
         return mapper.Map<List<UsuarioDto>>(entidad);
     }
     [HttpGet("{id}")]
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -47,9 +47,9 @@ public class UsuarioController : BaseApiController
         }
         return this.mapper.Map<UsuarioDto>(entidad);
     }
-    [HttpGet]
-    [Authorize(Roles = "Administrador")]
-    [MapToApiVersion("1.1")]
+    /*[HttpGet]
+    //[Authorize(Roles = "Administrador")]
+    //[MapToApiVersion("1.1")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<Pager<UsuarioDto>>> GetPagination([FromQuery] Params paisParams)
@@ -57,7 +57,7 @@ public class UsuarioController : BaseApiController
         var entidad = await unitofwork.Usuarios.GetAllAsync(paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
         var listEntidad = mapper.Map<List<UsuarioDto>>(entidad.registros);
         return new Pager<UsuarioDto>(listEntidad, entidad.totalRegistros, paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
-    }
+    }*/
     [HttpPost("register")]
     [Authorize(Roles = "Administrador")]
     public async Task<ActionResult> RegisterAsync(RegisterDto model)
@@ -75,7 +75,7 @@ public class UsuarioController : BaseApiController
     }
     
     [HttpPost("addrole")]
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public async Task<IActionResult> AddRoleAsync(AddRoleDto model)
     {
         var result = await _Usuarioservice.AddRoleAsync(model);
@@ -95,7 +95,7 @@ public class UsuarioController : BaseApiController
 
 
     [HttpPut("{id}")]
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -113,7 +113,7 @@ public class UsuarioController : BaseApiController
     }
 
     [HttpDelete("{id}")]
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Delete(int id)

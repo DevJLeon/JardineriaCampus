@@ -4,7 +4,7 @@ using Domain.Entities;
 namespace Domain.Interfaces;
 public interface IGenericRepo <T> where T : class
 {
-    Task<T> GetByIdAsync(int id);
+    Task<T> GetByIdAsync(object id);
     Task<IEnumerable<T>> GetAllAsync();
     Task<(int totalRegistros, IEnumerable<T> registros)> GetAllAsync(int pageIndex, int pageSize, string search);
     Task<(int totalRegistros, IEnumerable<T> registros)> GetAllAsync(int pageIndex, int pageSize, int search);

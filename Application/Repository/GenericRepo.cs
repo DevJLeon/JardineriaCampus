@@ -35,14 +35,9 @@ public class GenericRepo <T> : IGenericRepo<T> where T : class
     }
     
 
-    public virtual async Task<T> GetByIdAsync(int id)
+    public virtual async Task<T> GetByIdAsync(object id)
     {
         return await _context.Set<T>().FindAsync(id);
-    }
-
-    public virtual Task<T> GetByIdAsync(string id)
-    {
-        throw new NotImplementedException();
     }
 
     public virtual void Remove(T entity)
