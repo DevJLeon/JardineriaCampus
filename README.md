@@ -80,7 +80,9 @@ Eliminar Usuario: DELETE `http://localhost:5184/api/usuario/{id}`
 ## Uso 🕹
 **ENPOINTS DE CADA TABLA🟢**
 **CLIENTE:**
+     ```sql
 http://localhost:5184/api/cliente/consulta1
+     ```
 http://localhost:5184/api/cliente/consulta3
 http://localhost:5184/api/cliente/consulta11
 http://localhost:5184/api/cliente/consulta12
