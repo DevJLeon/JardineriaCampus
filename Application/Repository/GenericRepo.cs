@@ -2,7 +2,7 @@ using System.Linq.Expressions;
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Persistencia;
+using Persistence;
 
 namespace Application.Repository;
 public class GenericRepo <T> : IGenericRepo<T> where T : class

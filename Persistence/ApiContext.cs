@@ -2,7 +2,7 @@ using System.Reflection;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Persistencia;
+namespace Persistence;
 public class ApiContext : DbContext
 {
     public ApiContext(DbContextOptions options) : base(options)

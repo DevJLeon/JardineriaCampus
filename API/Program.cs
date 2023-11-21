@@ -3,7 +3,7 @@ using API.Extensions;
 using API.Helpers;
 using AspNetCoreRateLimit;
 using Microsoft.EntityFrameworkCore;
-using Persistencia;
+using Persistence;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

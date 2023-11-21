@@ -44,10 +44,10 @@ repetidas.❓
 10. Devuelve un listado con todos los productos que pertenecen a la
 gama Ornamentales y que tienen más de 100 unidades en stock. El listado
 deberá estar ordenado por su precio de venta, mostrando en primer lugar
-los de mayor precio.
+los de mayor precio.❓
 
 11. Devuelve un listado con todos los clientes que sean de la ciudad de Madrid y
-cuyo representante de ventas tenga el código de empleado 11 o 30.
+cuyo representante de ventas tenga el código de empleado 11 o 30.❓
 
 
 // not this1.4.5 Consultas multitabla (Composición interna)
@@ -56,30 +56,30 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 
 
 12. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su
-representante de ventas.
+representante de ventas.-❓
 
 13. Muestra el nombre de los clientes que hayan realizado pagos junto con el
-nombre de sus representantes de ventas.
+nombre de sus representantes de ventas.❓
 
 14. Muestra el nombre de los clientes que no hayan realizado pagos junto con
-el nombre de sus representantes de ventas.
+el nombre de sus representantes de ventas.❓
 
 15. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus
 representantes junto con la ciudad de la oficina a la que pertenece el
-representante.
+representante.❓
 
 16. Devuelve el nombre de los clientes que no hayan hecho pagos y el nombre
 de sus representantes junto con la ciudad de la oficina a la que pertenece el
-representante.
+representante.❓
 
 17. Devuelve un listado que muestre el nombre de cada empleados, el nombre
-de su jefe y el nombre del jefe de sus jefe.
+de su jefe y el nombre del jefe de sus jefe. ❓🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
 18. Devuelve el nombre de los clientes a los que no se les ha entregado a
-tiempo un pedido.
+tiempo un pedido.❓
 
 19. Devuelve un listado de las diferentes gamas de producto que ha comprado
-cada cliente.
+cada cliente.❓🔥🔥🔥🔥
 
 
 //not this 1.4.6 Consultas multitabla (Composición externa)
@@ -87,13 +87,13 @@ Resuelva todas las consultas utilizando las cláusulas LEFT JOIN, RIGHT JOIN, NA
 LEFT JOIN y NATURAL RIGHT JOIN.
 
 20. Devuelve un listado que muestre solamente los clientes que no han
-realizado ningún pago.
+realizado ningún pago.❓
 
 21. Devuelve un listado que muestre los clientes que no han realizado ningún
-pago y los que no han realizado ningún pedido.
+pago y los que no han realizado ningún pedido.❓
 
 22. Devuelve un listado que muestre solamente los empleados que no tienen un
-cliente asociado junto con los datos de la oficina donde trabajan.
+cliente asociado junto con los datos de la oficina donde trabajan.❓
 
 23. Devuelve un listado que muestre los empleados que no tienen una oficina
 asociada y los que no tienen un cliente asociado.

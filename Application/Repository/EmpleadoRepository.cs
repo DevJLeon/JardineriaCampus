@@ -1,7 +1,7 @@
 using Domain.Entities;
 using Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Persistencia;
+using Persistence;
 
 namespace Application.Repository;
 public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
@@ -41,4 +41,43 @@ public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
 
         return (totalRegistros, registros);
     }
+
+    public async Task<IEnumerable<object>> Consulta17()
+    {
+        var dato = await (
+            from em in _context.Empleados
+            join j1 in _context.Empleados on em.CodigoJefe equals j1.CodigoEmpleado into bossJoin
+            from boss in bossJoin.DefaultIfEmpty()
+            join j2 in _context.Empleados on boss.CodigoJefe equals j2.CodigoEmpleado into grandBossJoin
+            from grandBoss in grandBossJoin.DefaultIfEmpty()
+            select new
+            {
+                NombreEmpleado = em.Nombre,
+                NombreJefe = boss != null ? boss.Nombre : null,
+                NombreJefeJefe = grandBoss != null ? grandBoss.Nombre : null
+            }
+        ).ToListAsync();
+
+        return dato;
+    }
+    public async Task<IEnumerable<object>> Query22()
+    {
+        var data = await (
+            from em in _context.Empleados
+            join of in _context.Oficinas on em.CodigoOficina equals of.CodigoOficina
+            join c in _context.Clientes on em.CodigoEmpleado equals c.CodigoEmpleadoRepVentas into cj
+            from subc in cj.DefaultIfEmpty()
+            where subc == null
+            select new
+            {
+                NombreEmpleado = em.Nombre,
+                CiudadOficina = of.Ciudad,
+                PaisOficina = of.Pais
+            }
+        ).ToListAsync();
+    
+        return data;
+    }
+
+
 }

@@ -1,7 +1,7 @@
 using Application.Repository;
 using Domain.Entities;
 using Domain.Interfaces;
-using Persistencia;
+using Persistence;
 
 namespace Application.UnitOfWork;
 public class UnitOfWork  : IUnitOfWork, IDisposable
