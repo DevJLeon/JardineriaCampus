@@ -138,90 +138,90 @@ al que atiende cada uno.❓
 ventas.❓
 
 37. Calcula la fecha del primer y último pago realizado por cada uno de los
-clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.
+clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.❓
 
 38. Calcula el número de productos diferentes que hay en cada uno de los
-pedidos.
+pedidos. ****
 
 39. Calcula la suma de la cantidad total de todos los productos que aparecen en
-cada uno de los pedidos.
+cada uno de los pedidos. ***
 
 40. Devuelve un listado de los 20 productos más vendidos y el número total de
 unidades que se han vendido de cada uno. El listado deberá estar ordenado
-por el número total de unidades vendidas.
+por el número total de unidades vendidas. ***
 
 41. La misma información que en la pregunta anterior, pero agrupada por
-código de producto.
+código de producto.****
 
 42. La misma información que en la pregunta anterior, pero agrupada por
-código de producto filtrada por los códigos que empiecen por OR.
+código de producto filtrada por los códigos que empiecen por OR. ****
 
 43. Lista las ventas totales de los productos que hayan facturado más de 3000
 euros. Se mostrará el nombre, unidades vendidas, total facturado y total
-facturado con impuestos (21% IVA).
+facturado con impuestos (21% IVA). ****
 
 44. Muestre la suma total de todos los pagos que se realizaron para cada uno
-de los años que aparecen en la tabla pagos.
+de los años que aparecen en la tabla pagos. ********?????????
 
 // not this 1.4.8 Subconsultas
 
 // not this 1.4.8.1 Con operadores básicos de comparación
 
-45. Devuelve el nombre del cliente con mayor límite de crédito.
+45. Devuelve el nombre del cliente con mayor límite de crédito. ****
 
-46. Devuelve el nombre del producto que tenga el precio de venta más caro.
+46. Devuelve el nombre del producto que tenga el precio de venta más caro. ****
 
 47. Devuelve el nombre del producto del que se han vendido más unidades.
 (Tenga en cuenta que tendrá que calcular cuál es el número total de
 unidades que se han vendido de cada producto a partir de los datos de la
-tabla detalle_pedido) 
+tabla detalle_pedido)  ****
 
 48. Los clientes cuyo límite de crédito sea mayor que los pagos que haya
-realizado. (Sin utilizar INNER JOIN).
+realizado. (Sin utilizar INNER JOIN). ****
 1.4.8.2 Subconsultas con ALL y ANY
 
-49. Devuelve el nombre del cliente con mayor límite de crédito.
+49. Devuelve el nombre del cliente con mayor límite de crédito. ****
 
-50. Devuelve el nombre del producto que tenga el precio de venta más caro.
+50. Devuelve el nombre del producto que tenga el precio de venta más caro. ****
 
 // not this 1.4.8.3 Subconsultas con IN y NOT IN
 
 51. Devuelve un listado que muestre solamente los clientes que no han
-realizado ningún pago.
+realizado ningún pago.****
 
 52. Devuelve un listado que muestre solamente los clientes que sí han realizado
-algún pago.
+algún pago.****
 
 53. Devuelve un listado de los productos que nunca han aparecido en un
-pedido.
+pedido.****
 
 54. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
-empleados que no sean representante de ventas de ningún cliente.
+empleados que no sean representante de ventas de ningún cliente.****
 1.4.8.4 Subconsultas con EXISTS y NOT EXISTS
 
 55. Devuelve un listado que muestre solamente los clientes que no han
-realizado ningún pago.
+realizado ningún pago. ****
 
 56. Devuelve un listado que muestre solamente los clientes que sí han realizado
-algún pago.
+algún pago. ****
 // not this 1.4.8.5 Subconsultas correlacionadas
 // not this 1.4.9 Consultas variadas
 
 57. Devuelve el listado de clientes indicando el nombre del cliente y cuántos
 pedidos ha realizado. Tenga en cuenta que pueden existir clientes que no
-han realizado ningún pedido.
+han realizado ningún pedido. ****
 
 58. Devuelve el nombre de los clientes que hayan hecho pedidos en 2008
-ordenados alfabéticamente de menor a mayor.
+ordenados alfabéticamente de menor a mayor. ****
 
 59. Devuelve el nombre del cliente, el nombre y primer apellido de su
 representante de ventas y el número de teléfono de la oficina del
 representante de ventas, de aquellos clientes que no hayan realizado ningún
-pago.
+pago. ****
 
 60. Devuelve el listado de clientes donde aparezca el nombre del cliente, el
 nombre y primer apellido de su representante de ventas y la ciudad donde
-está su oficina.
+está su oficina. ****
 
 61. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
 empleados que no sean representante de ventas de ningún cliente.

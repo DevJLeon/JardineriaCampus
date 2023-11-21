@@ -203,7 +203,7 @@ public class ClienteRepository: GenericRepo<Cliente>, ICliente
         return dato;
     }
 
-    public async Task<IEnumerable<object>> Query20()
+    public async Task<IEnumerable<object>> Consulta20()
     {
         var dato = await (
             from c in _context.Clientes
@@ -218,7 +218,7 @@ public class ClienteRepository: GenericRepo<Cliente>, ICliente
 
         return dato;
     }
-    public async Task<IEnumerable<object>> Query21()
+    public async Task<IEnumerable<object>> Consulta21()
     {
         var dato = await (
             from c in _context.Clientes
@@ -235,7 +235,7 @@ public class ClienteRepository: GenericRepo<Cliente>, ICliente
 
         return dato;
     }
-public async Task<IEnumerable<object>> Query27()
+public async Task<IEnumerable<object>> Consulta27()
 {
     var dato = await (
         from c in _context.Clientes

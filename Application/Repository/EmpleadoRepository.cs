@@ -60,7 +60,7 @@ public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
 
         return dato;
     }
-    public async Task<IEnumerable<object>> Query22()
+    public async Task<IEnumerable<object>> Consulta22()
     {
         var data = await (
             from em in _context.Empleados
@@ -78,7 +78,7 @@ public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
 
         return data;
     }
-    public async Task<IEnumerable<object>> Query23()
+    public async Task<IEnumerable<object>> Consulta23()
     {
         var data = await (
             from em in _context.Empleados
@@ -97,7 +97,7 @@ public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
 
         return data;
     }
-public async Task<IEnumerable<object>> Query28()
+public async Task<IEnumerable<object>> Consulta28()
 {
     var data = await (
         from em in _context.Empleados
