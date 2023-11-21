@@ -1,9 +1,160 @@
-1. Devuelve un listado con el primer apellido, segundo apellido y el nombre de todos los alumnos. El listado deberá estar ordenado alfabéticamente de menor a mayor por el primer apellido, segundo apellido y nombre.
 
-    ```sql
-      http://localhost:5272/api/persona/consulta1
-    ```
-Consultas Requeridas
+# Sistema Administracion Tienda de Ropa 👔👕
+Sistema de administración de tienda de ropa que permite llevar el control, registro y seguimiento de la producción de prendas de seguridad industrial, la empresa cuenta con diferentes tipos de prendas entre las cuales están las prendas resistentes al fuego (Ignifugas), resistentes a altos voltajes (Arco eléctrico).
+
+## 🚧 Se alcanzó a realizar hasta CRUD (Paginación, versionado, RateLimit, JWT)🚧
+
+## Características 🌟
+
+- Registro de usuarios.
+- Autenticación con usuario y contraseña.
+- Generación y utilización del token.
+- CRUD completo para cada entidad.
+
+## 1. Generación del token 🔑:
+
+**Endpoint**: `http://localhost:5272/api/usuario/token`
+
+**Método**: `POST`
+
+**Payload**:
+
+`{
+    "Nombre": "Admin",
+    "Contraseña": "123"
+}`
+
+Se obtendrá el token y se concede el acceso a los métodos correspondientes ✅
+## 2. Registro de Usuarios 📝:
+
+**Endpoint**: `http://localhost:5272/api/usuario/register`
+
+**Método**: `POST`
+
+**Payload**:
+
+json
+`{
+    "Usuario": "<usuario>",
+    "Contraseña": "<contraseña>",
+    "CorreoElectronico": "<correo>"
+}`
+
+Este endpoint permite a los usuarios registrarse en el sistema.
+
+Una vez registrado el usuario tendrá que ingresar para recibir un token, este será ingresado al siguiente Endpoint que es el de Refresh Token.
+
+## 3. Refresh Token 🔄:
+
+**Endpoint**: `http://localhost:5272/api/usuario/refresh-token`
+
+**Método**: `POST`
+
+**Payload Token**:
+
+`{
+    "Nombre": "<usuario>",
+    "Contraseña": "<contraseña>"
+}`
+
+Se dejan los mismos datos en el Body y luego se ingresa al "Auth", "Bearer", allí se ingresa el token obtenido en el anterior Endpoint.
+
+**Otros Endpoints Usuario👤**
+
+Obtener Todos los Usuarios: GET `http://localhost:5272/api/usuario`
+
+Obtener Usuario por ID: GET `http://localhost:5272/api/usuario/{id}`
+
+Actualizar Usuario: PUT `http://localhost:5272/api/usuario/{id}`
+
+Eliminar Usuario: DELETE `http://localhost:5272/api/usuario/{id}`
+
+- Datos Usuario:
+```
+  {
+      "id": 1,
+      "username": "admin",
+      "email": "admin@example.com",
+      "password": "AQAAAAIAAYagAAAAEGi0FjrgCdfzlsJOcti7rJQq1k5DB4Cpr6ICusQEnePc6f78PE1IhgVuIzm6rwMeDA"
+    }
+```
+## Uso 🕹
+**ENPOINTS DE CADA TABLA🟢**
+**CLIENTE:**
+http://localhost:5184/api/cliente/consulta1
+http://localhost:5184/api/cliente/consulta3
+http://localhost:5184/api/cliente/consulta11
+http://localhost:5184/api/cliente/consulta12
+http://localhost:5184/api/cliente/consulta13
+http://localhost:5184/api/cliente/consulta14
+http://localhost:5184/api/cliente/consulta15
+http://localhost:5184/api/cliente/consulta16
+http://localhost:5184/api/cliente/consulta18
+http://localhost:5184/api/cliente/consulta19
+http://localhost:5184/api/cliente/consulta20
+http://localhost:5184/api/cliente/consulta21
+http://localhost:5184/api/cliente/consulta27
+http://localhost:5184/api/cliente/consulta30
+http://localhost:5184/api/cliente/consulta33
+http://localhost:5184/api/cliente/consulta34
+http://localhost:5184/api/cliente/consulta36
+http://localhost:5184/api/cliente/consulta37
+http://localhost:5184/api/cliente/consulta45
+http://localhost:5184/api/cliente/consulta48
+http://localhost:5184/api/cliente/consulta49
+http://localhost:5184/api/cliente/consulta51
+http://localhost:5184/api/cliente/consulta52
+http://localhost:5184/api/cliente/consulta55
+http://localhost:5184/api/cliente/consulta56
+http://localhost:5184/api/cliente/consulta57
+http://localhost:5184/api/cliente/consulta58
+http://localhost:5184/api/cliente/consulta59
+http://localhost:5184/api/cliente/consulta60
+
+**EMPLEADO**
+
+http://localhost:5184/api/empleado/consulta17
+http://localhost:5184/api/empleado/consulta22
+http://localhost:5184/api/empleado/consulta23
+http://localhost:5184/api/empleado/consulta28
+http://localhost:5184/api/empleado/consulta29
+http://localhost:5184/api/empleado/consulta35
+http://localhost:5184/api/empleado/consulta54
+http://localhost:5184/api/empleado/consulta61
+
+**OFICINA**
+http://localhost:5184/api/oficina/consulta26/
+
+**PAGO**
+
+http://localhost:5184/api/pago/consulta8
+http://localhost:5184/api/pago/consulta9
+http://localhost:5184/api/pago/consulta31
+
+**PEDIDO**
+
+http://localhost:5184/api/pedido/consulta2
+http://localhost:5184/api/pedido/consulta4
+http://localhost:5184/api/pedido/consulta5
+http://localhost:5184/api/pedido/consulta6
+http://localhost:5184/api/pedido/consulta7
+http://localhost:5184/api/pedido/consulta32
+http://localhost:5184/api/pedido/consulta38
+http://localhost:5184/api/pedido/consulta39
+http://localhost:5184/api/pedido/consulta53
+
+
+**PRODUCTO**
+http://localhost:5184/api/producto/consulta10
+http://localhost:5184/api/producto/consulta24
+http://localhost:5184/api/producto/consulta25
+http://localhost:5184/api/producto/consulta40
+http://localhost:5184/api/producto/consulta41
+http://localhost:5184/api/producto/consulta42
+http://localhost:5184/api/producto/consulta43
+http://localhost:5184/api/producto/consulta46
+http://localhost:5184/api/producto/consulta47
+http://localhost:5184/api/producto/consulta50
 
 1. Devuelve un listado con el nombre de los todos los clientes españoles.❓
 
