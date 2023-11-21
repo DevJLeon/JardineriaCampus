@@ -118,4 +118,20 @@ public class PedidoRepository: GenericRepo<Pedido>, IPedido
 
         return dato;
     }
+public async Task<IEnumerable<object>> Consulta32()
+{
+    var orderCounts = await (
+        from pe in _context.Pedidos
+        group pe by pe.Estado into grupoPedidos
+        orderby grupoPedidos.Count() descending
+        select new
+        {
+            Estado = grupoPedidos.Key,
+            CantidadPedidos = grupoPedidos.Count()
+        }
+    ).ToListAsync();
+
+    return orderCounts;
+}
+
 }

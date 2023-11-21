@@ -58,4 +58,40 @@ public class ProductoRepository: GenericRepo<Producto>, IProducto
 
         return dato;
     }
+    public async Task<IEnumerable<object>> Consulta24()
+    {
+        var data = await (
+            from p in _context.Productos
+            join op in _context.DetallePedidos on p.CodigoProducto equals op.CodigoProducto into oj
+            from subop in oj.DefaultIfEmpty()
+            where subop == null
+            select new
+            {
+                NombreProducto = p.Nombre,
+                Descripcion = p.Descripcion
+            }
+        ).ToListAsync();
+
+        return data;
+    }
+    public async Task<IEnumerable<object>> Consulta25()
+    {
+        var data = await (
+            from p in _context.Productos
+            join gp in _context.GamaProductos on p.Gama equals gp.Gama
+            join op in _context.DetallePedidos on p.CodigoProducto equals op.CodigoProducto into oj
+            from subop in oj.DefaultIfEmpty()
+            where subop == null
+            select new
+            {
+                NombreProducto = p.Nombre,
+                Descripcion = p.Descripcion,
+                Imagen = gp.Imagen
+            }
+        ).ToListAsync();
+    
+        return data;
+    }
+
+
 }

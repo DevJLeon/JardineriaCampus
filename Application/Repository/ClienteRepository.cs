@@ -205,7 +205,7 @@ public class ClienteRepository: GenericRepo<Cliente>, ICliente
 
     public async Task<IEnumerable<object>> Query20()
     {
-        var data = await (
+        var dato = await (
             from c in _context.Clientes
             join p in _context.Pagos on c.CodigoCliente equals p.CodigoCliente into gj
             from subp in gj.DefaultIfEmpty()
@@ -216,11 +216,11 @@ public class ClienteRepository: GenericRepo<Cliente>, ICliente
             }
         ).ToListAsync();
 
-        return data;
+        return dato;
     }
     public async Task<IEnumerable<object>> Query21()
     {
-        var data = await (
+        var dato = await (
             from c in _context.Clientes
             join p in _context.Pagos on c.CodigoCliente equals p.CodigoCliente into pg
             from subp in pg.DefaultIfEmpty()
@@ -232,8 +232,93 @@ public class ClienteRepository: GenericRepo<Cliente>, ICliente
                 NombreCliente = c.NombreCliente
             }
         ).ToListAsync();
-    
-        return data;
+
+        return dato;
     }
+public async Task<IEnumerable<object>> Query27()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where _context.Pedidos.Any(p => p.CodigoCliente == c.CodigoCliente) &&
+                !_context.Pagos.Any(pa => pa.CodigoCliente == c.CodigoCliente)
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            CodigoCliente = c.CodigoCliente
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<IEnumerable<object>> Consulta30()
+{
+    var dato = await (
+        from c in _context.Clientes
+        group c by c.Pais into grupoPais
+        select new
+        {
+            Country = grupoPais.Key,
+            Clientes_en_Pais = grupoPais.Count()
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<int> Consulta33()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where c.Ciudad == "Madrid"
+        select c
+    ).CountAsync();
+
+    return dato;
+}
+public async Task<IEnumerable<object>> Consulta34()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where c.Ciudad.StartsWith("M")
+        group c by c.Ciudad into cityGroup
+        select new 
+        {
+            Ciudad = cityGroup.Key,
+            CantidadClientes = cityGroup.Count()
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<int> Consulta36()
+{
+    var data = await (
+        from c in _context.Clientes
+        where c.CodigoEmpleadoRepVentas == null
+        select c
+    ).CountAsync();
+
+    return data;
+}
+public async Task<IEnumerable<object>> Consulta37()
+{
+    var dato = await (
+        from c in _context.Clientes
+        join p in _context.Pagos on c.CodigoCliente equals p.CodigoCliente into cp
+        from subp in cp.DefaultIfEmpty()
+        group subp by new { c.NombreCliente, c.ApellidoContacto } into grp
+        select new
+        {
+            Nombre = grp.Key.NombreCliente,
+            Apellido = grp.Key.ApellidoContacto,
+            PrimerPago = grp.Min(p => p != null ? p.FechaPago.Ticks : DateTime.MaxValue.Ticks),
+            UltimoPago = grp.Max(p => p != null ? p.FechaPago.Ticks : DateTime.MinValue.Ticks)
+            
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+
+
 
 }

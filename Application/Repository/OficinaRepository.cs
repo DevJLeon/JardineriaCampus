@@ -41,4 +41,29 @@ public class OficinaRepository: GenericRepo<Oficina>, IOficina
 
         return (totalRegistros, registros);
     }
+    public async Task<IEnumerable<object>> Consulta26()
+    {
+        var dato = await (
+            from of in _context.Oficinas
+            where !_context.Clientes.Any(c => _context.Empleados
+                    .Where(em => em.CodigoEmpleado == c.CodigoEmpleadoRepVentas)
+                    .Any(salesRep =>
+                        _context.DetallePedidos
+                            .Any(dp =>
+                                dp.CodigoProductoNavigation.Gama == "Frutales" &&
+                                dp.CodigoPedidoNavigation.CodigoCliente == c.CodigoCliente
+                            )
+                    )
+                )
+            select new
+            {
+                NombreOficina = of.CodigoOficina,
+                Ciudad = of.Ciudad,
+                Pais = of.Pais
+            }
+        ).ToListAsync();
+
+        return dato;
+    }
+
 }

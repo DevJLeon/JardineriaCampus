@@ -63,4 +63,18 @@ public class PagoRepository: GenericRepo<Pago>, IPago
 
         return dato;
     }
+public async Task<string> Consulta31()
+{
+    var dato = await (
+        from pa in _context.Pagos
+        where pa.FechaPago.Year == 2009
+        group pa by pa.FormaPago into paymentGroup
+        orderby paymentGroup.Count() descending
+        select paymentGroup.Key
+    ).FirstOrDefaultAsync();
+
+    return dato;
+}
+
+
 }

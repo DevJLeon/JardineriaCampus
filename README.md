@@ -96,46 +96,46 @@ pago y los que no han realizado ningún pedido.❓
 cliente asociado junto con los datos de la oficina donde trabajan.❓
 
 23. Devuelve un listado que muestre los empleados que no tienen una oficina
-asociada y los que no tienen un cliente asociado.
+asociada y los que no tienen un cliente asociado.❓
 
 24. Devuelve un listado de los productos que nunca han aparecido en un
-pedido.
+pedido.❓
 
 25. Devuelve un listado de los productos que nunca han aparecido en un
 pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
-producto.
+producto.❓
 
 26. Devuelve las oficinas donde no trabajan ninguno de los empleados que
 hayan sido los representantes de ventas de algún cliente que haya realizado
-la compra de algún producto de la gama Frutales.
+la compra de algún producto de la gama Frutales.❓❓❓🔥🔥🔥(check later!!!!!!!!!!!!!!!!)🔥🔥🔥
 
 27. Devuelve un listado con los clientes que han realizado algún pedido pero no
-han realizado ningún pago.
+han realizado ningún pago.❓❓
 
 28. Devuelve un listado con los datos de los empleados que no tienen clientes
-asociados y el nombre de su jefe asociado.
+asociados y el nombre de su jefe asociado.❓❓
 
 // not this1.4.7 Consultas resumen
 
-29. ¿Cuántos empleados hay en la compañía?
+29. ¿Cuántos empleados hay en la compañía?❓
 
-30. ¿Cuántos clientes tiene cada país?
+30. ¿Cuántos clientes tiene cada país?❓
 
-31. ¿Cuál fue el pago medio en 2009?
+31. ¿Cuál fue el pago medio en 2009?❓
 
 32. ¿Cuántos pedidos hay en cada estado? Ordena el resultado de forma
-descendente por el número de pedidos.
+descendente por el número de pedidos.❓
 
-33. ¿Cuántos clientes existen con domicilio en la ciudad de Madrid?
+33. ¿Cuántos clientes existen con domicilio en la ciudad de Madrid?❓
 
 34. ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
-por M?
+por M?❓
 
 35. Devuelve el nombre de los representantes de ventas y el número de clientes
-al que atiende cada uno.
+al que atiende cada uno.❓
 
 36. Calcula el número de clientes que no tiene asignado representante de
-ventas.
+ventas.❓
 
 37. Calcula la fecha del primer y último pago realizado por cada uno de los
 clientes. El listado deberá mostrar el nombre y los apellidos de cada cliente.

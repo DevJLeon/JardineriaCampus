@@ -75,9 +75,66 @@ public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
                 PaisOficina = of.Pais
             }
         ).ToListAsync();
-    
+
         return data;
     }
+    public async Task<IEnumerable<object>> Query23()
+    {
+        var data = await (
+            from em in _context.Empleados
+            join of in _context.Oficinas on em.CodigoOficina equals of.CodigoOficina into oj
+            from subo in oj.DefaultIfEmpty()
+            join c in _context.Clientes on em.CodigoEmpleado equals c.CodigoEmpleadoRepVentas into cj
+            from subc in cj.DefaultIfEmpty()
+            where subo == null || subc == null
+            select new
+            {
+                NombreEmpleado = em.Nombre,
+                TieneOficina = subo != null,
+                TieneCliente = subc != null
+            }
+        ).ToListAsync();
+
+        return data;
+    }
+public async Task<IEnumerable<object>> Query28()
+{
+    var data = await (
+        from em in _context.Empleados
+        join boss in _context.Empleados on em.CodigoJefe equals boss.CodigoEmpleado into bossJoin
+        from b in bossJoin.DefaultIfEmpty()
+        where !_context.Clientes.Any(c => c.CodigoEmpleadoRepVentas == em.CodigoEmpleado)
+        select new
+        {
+            NombreEmpleado = em.Nombre,
+            Jefe = b.Nombre
+        }
+    ).ToListAsync();
+
+    return data;
+}
+public async Task<object> Consulta29()
+{
+    var data = await _context.Empleados.CountAsync();
+    return data;
+}
+public async Task<IEnumerable<object>> Consulta35()
+{
+    var dato = await (
+        from em in _context.Empleados
+        join c in _context.Clientes on em.CodigoEmpleado equals c.CodigoEmpleadoRepVentas into clientGroup
+        select new 
+        {
+            NombreRepresentante = em.Nombre,
+            CantidadClientes = clientGroup.Count()
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+
+
+
 
 
 }
