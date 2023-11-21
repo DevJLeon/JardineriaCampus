@@ -80,9 +80,9 @@ Eliminar Usuario: DELETE `http://localhost:5184/api/usuario/{id}`
 ## Uso 🕹
 **ENPOINTS DE CADA TABLA🟢**
 **CLIENTE:**
-     ```sql
+
 http://localhost:5184/api/cliente/consulta1
-     ```
+
 http://localhost:5184/api/cliente/consulta3
 http://localhost:5184/api/cliente/consulta11
 http://localhost:5184/api/cliente/consulta12
@@ -115,6 +115,8 @@ http://localhost:5184/api/cliente/consulta60
 **EMPLEADO**
 
 http://localhost:5184/api/empleado/consulta17
+
+
 http://localhost:5184/api/empleado/consulta22
 http://localhost:5184/api/empleado/consulta23
 http://localhost:5184/api/empleado/consulta28
@@ -135,7 +137,9 @@ http://localhost:5184/api/pago/consulta31
 **PEDIDO**
 
 http://localhost:5184/api/pedido/consulta2
+
 http://localhost:5184/api/pedido/consulta4
+
 http://localhost:5184/api/pedido/consulta5
 http://localhost:5184/api/pedido/consulta6
 http://localhost:5184/api/pedido/consulta7
@@ -146,7 +150,9 @@ http://localhost:5184/api/pedido/consulta53
 
 
 **PRODUCTO**
+
 http://localhost:5184/api/producto/consulta10
+
 http://localhost:5184/api/producto/consulta24
 http://localhost:5184/api/producto/consulta25
 http://localhost:5184/api/producto/consulta40
