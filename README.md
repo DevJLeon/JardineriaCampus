@@ -1,8 +1,6 @@
 
-# Sistema Administracion Tienda de Ropa 👔👕
-Sistema de administración de tienda de ropa que permite llevar el control, registro y seguimiento de la producción de prendas de seguridad industrial, la empresa cuenta con diferentes tipos de prendas entre las cuales están las prendas resistentes al fuego (Ignifugas), resistentes a altos voltajes (Arco eléctrico).
-
-## 🚧 Se alcanzó a realizar hasta CRUD (Paginación, versionado, RateLimit, JWT)🚧
+# Sistema Administracion Jardinería :D 🌱🤑💵
+Sistema de administración de tienda de jardinería que permite llevar el control, registro y seguimiento de los productos vendidos, así como sus clientes, oficinas y empleados.
 
 ## Características 🌟
 
@@ -10,10 +8,11 @@ Sistema de administración de tienda de ropa que permite llevar el control, regi
 - Autenticación con usuario y contraseña.
 - Generación y utilización del token.
 - CRUD completo para cada entidad.
+- Endpoints requeridos
 
 ## 1. Generación del token 🔑:
 
-**Endpoint**: `http://localhost:5272/api/usuario/token`
+**Endpoint**: `http://localhost:5184/api/usuario/token`
 
 **Método**: `POST`
 
@@ -27,7 +26,7 @@ Sistema de administración de tienda de ropa que permite llevar el control, regi
 Se obtendrá el token y se concede el acceso a los métodos correspondientes ✅
 ## 2. Registro de Usuarios 📝:
 
-**Endpoint**: `http://localhost:5272/api/usuario/register`
+**Endpoint**: `http://localhost:5184/api/usuario/register`
 
 **Método**: `POST`
 
@@ -46,7 +45,7 @@ Una vez registrado el usuario tendrá que ingresar para recibir un token, este s
 
 ## 3. Refresh Token 🔄:
 
-**Endpoint**: `http://localhost:5272/api/usuario/refresh-token`
+**Endpoint**: `http://localhost:5184/api/usuario/refresh-token`
 
 **Método**: `POST`
 
@@ -61,13 +60,13 @@ Se dejan los mismos datos en el Body y luego se ingresa al "Auth", "Bearer", all
 
 **Otros Endpoints Usuario👤**
 
-Obtener Todos los Usuarios: GET `http://localhost:5272/api/usuario`
+Obtener Todos los Usuarios: GET `http://localhost:5184/api/usuario`
 
-Obtener Usuario por ID: GET `http://localhost:5272/api/usuario/{id}`
+Obtener Usuario por ID: GET `http://localhost:5184/api/usuario/{id}`
 
-Actualizar Usuario: PUT `http://localhost:5272/api/usuario/{id}`
+Actualizar Usuario: PUT `http://localhost:5184/api/usuario/{id}`
 
-Eliminar Usuario: DELETE `http://localhost:5272/api/usuario/{id}`
+Eliminar Usuario: DELETE `http://localhost:5184/api/usuario/{id}`
 
 - Datos Usuario:
 ```
