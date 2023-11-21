@@ -4,6 +4,7 @@ namespace Domain.Interfaces;
 public interface ICliente : IGenericRepo<Cliente>
 {
     Task<IEnumerable<object>> Consulta1();
+    Task<(int totalRegistros, object registros)> Consulta1(int pageIndez, int pageSize, string search);
     Task<IEnumerable<object>> Consulta3();
     Task<IEnumerable<object>> Consulta11();
     Task<IEnumerable<object>> Consulta12();

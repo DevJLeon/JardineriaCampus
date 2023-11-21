@@ -58,6 +58,38 @@ public class ProductoRepository: GenericRepo<Producto>, IProducto
 
         return dato;
     }
+
+
+public virtual async Task<(int totalRegistros, object registros)> Consulta10(int pageIndez, int pageSize, string search) // 1.1
+    {
+        var query = (
+            from pr in _context.Productos
+            where pr.Gama == "Ornamentales" && pr.CantidadEnStock > 100
+            orderby pr.PrecioVenta descending
+            select new 
+            {
+                Producto = pr.Nombre,
+                Codigo = pr.CodigoProducto,
+                Gama = pr.Gama,
+                Stock = pr.CantidadEnStock,
+                PrecioVenta = pr.PrecioVenta
+    });
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(p => p.Producto.ToLower().Contains(search));
+        }
+
+        query = query.OrderBy(p => p.Producto);
+        var totalRegistros = await query.CountAsync();
+        var registros = await query
+            .Skip((pageIndez - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (totalRegistros, registros);
+    }
+
     public async Task<IEnumerable<object>> Consulta24()
     {
         var data = await (

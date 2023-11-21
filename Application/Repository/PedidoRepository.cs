@@ -65,10 +65,46 @@ public class PedidoRepository: GenericRepo<Pedido>, IPedido
             FechaEspera = pe.FechaEsperada,
             FechaEntrega = pe.FechaEntrega
 
-        }).ToListAsync();
+        }
+        ).ToListAsync();
 
         return dato;
     }
+
+    
+
+public virtual async Task<(int totalRegistros, object registros)> Consulta4(int pageIndez, int pageSize, string search) // 1.1
+    {
+        var query = (
+        from pe in _context.Pedidos
+        join cl in _context.Clientes on pe.CodigoCliente equals cl.CodigoCliente
+        where pe.Estado == "Pendiente"
+        where pe.FechaEntrega > pe.FechaEsperada
+        select new
+        {
+            CodigoPedido = pe.CodigoPedido,
+            NombreCliente = cl.NombreCliente,
+            FechaEspera = pe.FechaEsperada,
+            FechaEntrega = pe.FechaEntrega
+
+        }
+            );
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(p => p.NombreCliente.ToLower().Contains(search));
+        }
+
+        query = query.OrderBy(p => p.NombreCliente);
+        var totalRegistros = await query.CountAsync();
+        var registros = await query
+            .Skip((pageIndez - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (totalRegistros, registros);
+    }
+
 
     public async Task<IEnumerable<object>> Consulta5()
     {

@@ -60,6 +60,39 @@ public class EmpleadoRepository: GenericRepo<Empleado>, IEmpleado
 
         return dato;
     }
+
+
+public virtual async Task<(int totalRegistros, object registros)> Consulta17(int pageIndez, int pageSize, string search) // 1.1
+    {
+        var query = (
+            from em in _context.Empleados
+            join j1 in _context.Empleados on em.CodigoJefe equals j1.CodigoEmpleado into bossJoin
+            from boss in bossJoin.DefaultIfEmpty()
+            join j2 in _context.Empleados on boss.CodigoJefe equals j2.CodigoEmpleado into grandBossJoin
+            from grandBoss in grandBossJoin.DefaultIfEmpty()
+            select new
+            {
+                NombreEmpleado = em.Nombre,
+                NombreJefe = boss != null ? boss.Nombre : null,
+                NombreJefeJefe = grandBoss != null ? grandBoss.Nombre : null
+            }
+            );
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(p => p.NombreEmpleado.ToLower().Contains(search));
+        }
+
+        query = query.OrderBy(p => p.NombreEmpleado);
+        var totalRegistros = await query.CountAsync();
+        var registros = await query
+            .Skip((pageIndez - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (totalRegistros, registros);
+    }
+
     public async Task<IEnumerable<object>> Consulta22()
     {
         var data = await (
