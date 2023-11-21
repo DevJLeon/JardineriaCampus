@@ -82,4 +82,31 @@ public class PagoController : BaseApiController
         await unitofwork.SaveAsync();
         return NoContent();
     }
+    [HttpGet("consulta8")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> Consulta8()
+    {
+        var entidad = await unitofwork.Pagos.Consulta8();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+    [HttpGet("consulta9")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> Consulta9()
+    {
+        var entidad = await unitofwork.Pagos.Consulta9();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
+    [HttpGet("consulta31")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<object>> Consulta31()
+    {
+        var entidad = await unitofwork.Pagos.Consulta31();
+        var dto = mapper.Map<IEnumerable<object>>(entidad);
+        return Ok(dto);
+    }
 }
