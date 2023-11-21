@@ -31,7 +31,7 @@ public partial class Cliente
 
     public int? CodigoEmpleadoRepVentas { get; set; }
 
-    public decimal? LimiteCredito { get; set; }
+    public decimal LimiteCredito { get; set; }
 
     public virtual Empleado? CodigoEmpleadoRepVentasNavigation { get; set; }
 

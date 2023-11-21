@@ -133,5 +133,49 @@ public async Task<IEnumerable<object>> Consulta32()
 
     return orderCounts;
 }
+public async Task<IEnumerable<object>> Consulta38()
+{
+    var data = await (
+        from pedido in _context.Pedidos
+        join detallePedido in _context.DetallePedidos on pedido.CodigoPedido equals detallePedido.CodigoPedido
+        group detallePedido by pedido.CodigoPedido into grp
+        select new
+        {
+            CodigoPedido = grp.Key,
+            NumeroProductosDiferentes = grp.Select(dp => dp.CodigoProducto).Distinct().Count()
+        }
+    ).ToListAsync();
+
+    return data;
+}
+public async Task<IEnumerable<object>> Consulta39()
+{
+    var data = await (
+        from pedido in _context.Pedidos
+        join detallePedido in _context.DetallePedidos on pedido.CodigoPedido equals detallePedido.CodigoPedido
+        group detallePedido by pedido.CodigoPedido into grp
+        select new
+        {
+            CodigoPedido = grp.Key,
+            SumaCantidadTotal = grp.Sum(dp => dp.Cantidad)
+        }
+    ).ToListAsync();
+
+    return data;
+}
+public async Task<IEnumerable<object>> Consulta53()
+{
+    var dato = await (
+        from p in _context.Productos
+        where !_context.DetallePedidos.Any(dp => dp.CodigoProducto == p.CodigoProducto)
+        select new
+        {
+            CodigoProducto = p.CodigoProducto,
+            NombreProducto = p.Nombre,
+        }
+    ).ToListAsync();
+
+    return dato;
+}
 
 }

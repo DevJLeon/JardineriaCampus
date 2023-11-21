@@ -303,22 +303,186 @@ public async Task<IEnumerable<object>> Consulta37()
 {
     var dato = await (
         from c in _context.Clientes
-        join p in _context.Pagos on c.CodigoCliente equals p.CodigoCliente into cp
-        from subp in cp.DefaultIfEmpty()
-        group subp by new { c.NombreCliente, c.ApellidoContacto } into grp
+        join primerPago in _context.Pagos.OrderBy(p => p.FechaPago)
+                            on c.CodigoCliente equals primerPago.CodigoCliente into primerPagos
+        join ultimoPago in _context.Pagos.OrderByDescending(p => p.FechaPago)
+                            on c.CodigoCliente equals ultimoPago.CodigoCliente into ultimoPagos
         select new
         {
-            Nombre = grp.Key.NombreCliente,
-            Apellido = grp.Key.ApellidoContacto,
-            PrimerPago = grp.Min(p => p != null ? p.FechaPago.Ticks : DateTime.MaxValue.Ticks),
-            UltimoPago = grp.Max(p => p != null ? p.FechaPago.Ticks : DateTime.MinValue.Ticks)
-            
+            Nombre = c.NombreCliente,
+            Apellidos = c.ApellidoContacto,
+            PrimerPago = primerPagos.Select(p => p.FechaPago).FirstOrDefault(),
+            UltimoPago = ultimoPagos.Select(p => p.FechaPago).FirstOrDefault()
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<string> Consulta45()
+{
+    var dato = await (
+        from c in _context.Clientes
+        orderby c.LimiteCredito descending
+        select c.NombreCliente
+    ).FirstOrDefaultAsync();
+
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta48()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where c.LimiteCredito > (
+            from pa in _context.Pagos
+            where pa.CodigoCliente == c.CodigoCliente
+            select pa.Total
+        ).Sum()
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            LimiteCredito = c.LimiteCredito
         }
     ).ToListAsync();
 
     return dato;
 }
 
+public async Task<object> Consulta49()
+{
+    var dato = await (
+        from c in _context.Clientes
+        orderby c.LimiteCredito descending
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            LimiteCredito = c.LimiteCredito
+        }
+    ).FirstOrDefaultAsync();
+
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta51()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where !_context.Pagos.Any(p => p.CodigoCliente == c.CodigoCliente)
+        select new
+        {
+            CodigoCliente = c.CodigoCliente,
+            NombreCliente = c.NombreCliente
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<IEnumerable<object>> Consulta52()
+{
+    var dato = await (
+        from c in _context.Clientes
+        join p in _context.Pagos on c.CodigoCliente equals p.CodigoCliente
+        select new
+        {
+            CodigoCliente = c.CodigoCliente,
+            NombreCliente = c.NombreCliente,
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta55()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where !_context.Pagos.Any(p => p.CodigoCliente == c.CodigoCliente)
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            ApellidoCliente = c.ApellidoContacto
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta56()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where _context.Pagos.Any(p => p.CodigoCliente == c.CodigoCliente)
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            ApellidoCliente = c.ApellidoContacto
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<IEnumerable<object>> Consulta57()
+{
+    var dato = await (
+        from c in _context.Clientes
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            PedidosRealizados = _context.Pedidos.Count(p => p.CodigoCliente == c.CodigoCliente)
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta58()
+{
+    var dato = await (
+        from c in _context.Clientes
+        join p in _context.Pedidos on c.CodigoCliente equals p.CodigoCliente
+        where p.FechaPedido.Year == 2008
+        orderby c.NombreCliente
+        select c.NombreCliente
+    ).ToListAsync();
+
+    return dato;
+}
+public async Task<IEnumerable<object>> Consulta59()
+{
+    var dato = await (
+        from c in _context.Clientes
+        where !_context.Pagos.Any(pago => pago.CodigoCliente == c.CodigoCliente)
+        join em in _context.Empleados on c.CodigoEmpleadoRepVentas equals em.CodigoEmpleado
+        join of in _context.Oficinas on em.CodigoOficina equals of.CodigoOficina
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            NombreRepresentante = em.Nombre,
+            ApellidoRepresentante = em.Apellidol,
+            TelefonoOficina = of.Telefono
+        }
+    ).ToListAsync();
+
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta60()
+{
+    var dato = await (
+        from c in _context.Clientes
+        join em in _context.Empleados on c.CodigoEmpleadoRepVentas equals em.CodigoEmpleado
+        join of in _context.Oficinas on em.CodigoOficina equals of.CodigoOficina
+        select new
+        {
+            NombreCliente = c.NombreCliente,
+            NombreRepresentante = em.Nombre,
+            ApellidoRepresentante = em.Apellidol,
+            CiudadOficina = of.Ciudad
+        }
+    ).ToListAsync();
+
+    return dato;
+}
 
 
 }

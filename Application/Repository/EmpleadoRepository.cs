@@ -133,7 +133,43 @@ public async Task<IEnumerable<object>> Consulta35()
     return dato;
 }
 
+public async Task<IEnumerable<object>> Consulta54()
+{
+    var dato = await (
+        from em in _context.Empleados
+        join cl in _context.Clientes on em.CodigoEmpleado equals cl.CodigoEmpleadoRepVentas into cj
+        from subc in cj.DefaultIfEmpty()
+        where subc == null
+        join of in _context.Oficinas on em.CodigoOficina equals of.CodigoOficina
+        select new
+        {
+            NombreEmpleado = em.Nombre,
+            ApellidosEmpleado = em.Apellidol + " " + em.Apellidol,
+            PuestoEmpleado = em.Puesto,
+            TelefonoOficina = of.Telefono
+        }
+    ).ToListAsync();
 
+    return dato;
+}
+
+public async Task<IEnumerable<object>> Consulta61()
+{
+    var dato = await (
+        from em in _context.Empleados
+        where !_context.Clientes.Any(cli => cli.CodigoEmpleadoRepVentas == em.CodigoEmpleado)
+        join of in _context.Oficinas on em.CodigoOficina equals of.CodigoOficina
+        select new
+        {
+            Nombre = em.Nombre,
+            Apellidos = em.Apellidol,
+            Puesto = em.Puesto,
+            TelefonoOficina = of.Telefono
+        }
+    ).ToListAsync();
+
+    return dato;
+}
 
 
 
