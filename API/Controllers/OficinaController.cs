@@ -1,4 +1,5 @@
 using API.Dtos;
+using API.Helpers.Errors;
 using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces;
@@ -6,6 +7,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
+[ApiVersion("1.0")]
+[ApiVersion("1.1")]
 public class OficinaController : BaseApiController
 {
     private readonly IUnitOfWork unitofwork;
@@ -83,6 +86,7 @@ public class OficinaController : BaseApiController
         return NoContent();
     }
     [HttpGet("consulta26")]
+    [MapToApiVersion("1.0")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<object>> Consulta26()
@@ -91,4 +95,16 @@ public class OficinaController : BaseApiController
         var dto = mapper.Map<IEnumerable<object>>(entidad);
         return Ok(dto);
     }
+
+    [HttpGet("consulta26")]
+    [MapToApiVersion("1.1")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<Pager<object>>> Consulta26([FromQuery] Params paisParams)
+    {
+        var entidad = await unitofwork.Oficinas.Consulta26(paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
+        var listEntidad = mapper.Map<List<object>>(entidad.registros);
+        return new Pager<object>(listEntidad, entidad.totalRegistros, paisParams.PageIndex, paisParams.PageSize, paisParams.Search);
+    }
+
 }

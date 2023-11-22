@@ -65,5 +65,44 @@ public class OficinaRepository: GenericRepo<Oficina>, IOficina
 
         return dato;
     }
+    
+
+public virtual async Task<(int totalRegistros, object registros)> Consulta26(int pageIndez, int pageSize, string search) // 1.1
+    {
+        var query = (
+            from of in _context.Oficinas
+            where !_context.Clientes.Any(c => _context.Empleados
+                    .Where(em => em.CodigoEmpleado == c.CodigoEmpleadoRepVentas)
+                    .Any(salesRep =>
+                        _context.DetallePedidos
+                            .Any(dp =>
+                                dp.CodigoProductoNavigation.Gama == "Frutales" &&
+                                dp.CodigoPedidoNavigation.CodigoCliente == c.CodigoCliente
+                            )
+                    )
+                )
+            select new
+            {
+                NombreOficina = of.CodigoOficina,
+                Ciudad = of.Ciudad,
+                Pais = of.Pais
+            }
+            );
+
+        if (!string.IsNullOrEmpty(search))
+        {
+            query = query.Where(p => p.NombreOficina.ToLower().Contains(search));
+        }
+
+        query = query.OrderBy(p => p.NombreOficina);
+        var totalRegistros = await query.CountAsync();
+        var registros = await query
+            .Skip((pageIndez - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return (totalRegistros, registros);
+    }
+
 
 }
